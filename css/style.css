@@ -1,15 +1,54 @@
+@font-face {
+    font-family: Consolas;
+    src: url("../fonts/consolas.ttf");
+}
+
 body {
     background: #2e313d;
 }
 
-main, footer {
+header img {
+    margin-top: 20px;
+}
+
+header ul {
+    font-family: Consolas;
+    color: #f1f1f1;
+    font-size: 24px;
+    list-style: none;
+    width: 600px;
+    margin: auto;
+    padding: 0;
+}
+
+header li {
+    width: 140px;
+    border-radius: 40px;
+    border: 1px solid #45495b;
+    padding: 8px 0 8px 0;
+    text-align: center;
+    float: left;    
+    margin: 40px 0 45px 87px;
+}
+
+header li:first-child {
+    margin-left: 0px;
+}
+
+header li:hover {
+    cursor: pointer;
+    background: #24262f;
+    transition: background 0.5s linear;
+}
+
+main {
+    clear: both;
+}
+
+header, main, footer {
     text-align: center;
 }
 
 #canvas {
     background: lightGray;	
-}
-
-footer img {
-    margin-top: 100px;
 }
