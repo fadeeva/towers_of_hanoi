@@ -4,7 +4,6 @@ window.onload = function() {
         var ctx = theCanvas.getContext("2d");
         if (ctx) {
             
-
             // board's shadow
             ctx.fillStyle = "#24262f";
             ctx.beginPath();
@@ -20,6 +19,14 @@ window.onload = function() {
             // board
             ctx.fillStyle = "#16171c";
             ctx.fillRect(0, 272, 700, 20);
+            
+            // rods
+            ctx.fillStyle = "#6b728e";
+            ctx.fillRect(118, 86, 6, 186);
+            ctx.fillRect(347, 86, 6, 186);
+            ctx.fillRect(578, 86, 6, 186);
+            
+            // disks
         }
     }
 }
