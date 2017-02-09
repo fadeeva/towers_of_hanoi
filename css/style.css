@@ -50,5 +50,5 @@ header, main, footer {
 }
 
 #canvas {
-    background: lightGray;	
+    /*border: 1px solid #45495b;*/
 }
