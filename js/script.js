@@ -48,17 +48,17 @@ window.onload = function() {
             ctx.fillStyle = "#24262f";
             ctx.beginPath();
             ctx.moveTo(0, 272);
-            ctx.lineTo(700, 272);
+            ctx.lineTo(708, 272);
             ctx.lineTo(726, 305);
             ctx.lineTo(726, 325);           
-            ctx.lineTo(32, 325);
+            ctx.lineTo(24, 325);
             ctx.lineTo(0, 290);
             ctx.closePath();
             ctx.fill();
             
             // board
             ctx.fillStyle = "#16171c";
-            ctx.fillRect(0, 272, 700, 20);
+            ctx.fillRect(0, 272, 708, 20);
             
             // rods
             ctx.fillStyle = "#6b728e";

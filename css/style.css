@@ -31,11 +31,15 @@ header li {
     margin: 40px 0 45px 87px;
 }
 
+#start_stop {
+	text-decoration: underline;
+}
+
 header li:first-child {
     margin-left: 0px;
 }
 
-header li:hover {
+#level:hover, #start_stop:hover {
     cursor: pointer;
     background: #24262f;
     transition: background 0.5s linear;
