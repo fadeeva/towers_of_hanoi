@@ -53,6 +53,10 @@ header, main, footer {
     text-align: center;
 }
 
+footer {
+    margin-top: 60px;
+}
+
 #canvas {
     /*border: 1px solid #45495b;*/
 }

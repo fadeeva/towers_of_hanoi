@@ -32,13 +32,30 @@ var disks = {
     
 }
 
+
+// game's levels
 var level_0 = {
-    rod_1 : [disks.pink, disks.green, disks.orange, disks.purple, disks.blue],
-    rod_2 : [disks.pink, disks.green, disks.orange, disks.purple, disks.blue],
-    ros_3 : [disks.pink, disks.green, disks.orange, disks.purple, disks.blue]
+    rod_1 : [],
+    rod_2 : [],
+    ros_3 : []
 }
 
+var level_1 = {
+    rod_1 : [disks.pink, disks.green, disks.orange],
+    rod_2 : [],
+    ros_3 : []
+}
+
+// menu's function
+function toggleMenu() {
+    console.log(this.innerHTML)
+}
+
+level.addEventListener("click", toggleMenu);
+start_stop.addEventListener("click", toggleMenu);
+
 window.onload = function() {
+
     var theCanvas = document.getElementById('canvas');
     if (theCanvas && theCanvas.getContext) {
         var ctx = theCanvas.getContext("2d");
@@ -97,7 +114,7 @@ window.onload = function() {
             }          
         }
     }
-    drawDisks(level_0)
+    drawDisks(level_1)
 }
 
 
