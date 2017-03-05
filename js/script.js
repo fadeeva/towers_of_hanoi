@@ -48,7 +48,16 @@ var level_1 = {
 
 // menu's function
 function toggleMenu() {
-    console.log(this.innerHTML)
+    switch(this.id) {
+        case "level" :
+            console.log("showMenu(level)");
+            break;
+        case "start_stop" :
+            console.log("showMenu(start_stop)");
+            break;
+        default :
+            break;
+    }
 }
 
 level.addEventListener("click", toggleMenu);
@@ -57,6 +66,37 @@ start_stop.addEventListener("click", toggleMenu);
 window.onload = function() {
 
     var theCanvas = document.getElementById('canvas');
+    var isDragging = false;
+
+    /*
+    function show(event) {
+        var X = event.pageX - this.offsetLeft 
+        var Y = event.pageY - this.offsetTop 
+        console.log("x= " + X + " y = " + Y)
+    }
+    */
+    
+    function handleMouseDown(event) {
+        console.log("down")
+    }
+    
+    function handleMouseMove(event) {
+        console.log("move")
+    }
+    
+    function handleMouseUp(event) {
+        console.log("up")
+    }
+    
+    function handleMouseOut(event) { 
+        console.log("out")
+    }
+    
+    theCanvas.addEventListener("mousedown", handleMouseDown);
+    theCanvas.addEventListener("mousemove", handleMouseMove);
+    theCanvas.addEventListener("mouseup", handleMouseUp);
+    theCanvas.addEventListener("mouseout", handleMouseOut);
+    
     if (theCanvas && theCanvas.getContext) {
         var ctx = theCanvas.getContext("2d");
         if (ctx) {
@@ -111,7 +151,10 @@ window.onload = function() {
                     
                     height = 248;
                 }
-            }          
+            }
+            
+            
+            
         }
     }
     drawDisks(level_1)
