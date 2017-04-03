@@ -78,6 +78,10 @@ header, main, footer {
     z-index: 99;
 }
 
+#module_window, #screen_dark {
+	display: none;
+}
+
 #module_window h2 {
     font-family: Consolas;
     color: #f1f1f1;
