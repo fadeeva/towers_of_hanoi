@@ -39,7 +39,7 @@ header li:first-child {
     margin-left: 0px;
 }
 
-#level:hover, #start_stop:hover {
+#level:hover, #start_stop:hover, #module_window ul li:hover {
     cursor: pointer;
     background: #24262f;
     transition: background 0.5s linear;
@@ -51,6 +51,56 @@ main {
 
 header, main, footer {
     text-align: center;
+}
+
+#module_window {
+    width: 300px;
+    height: 250px;
+    background: #2e313d;
+    opacity: .9;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, .7);
+    
+    position: absolute;
+    z-index: 100;
+    top: 340px;
+    left: 470px;
+}
+
+#screen_dark {
+    width: 726px;
+    height: 325px;
+    background: #24262f;
+    opacity: .7;
+    
+    position: absolute;
+    top: 312px;
+    left: 277px;
+    z-index: 99;
+}
+
+#module_window h2 {
+    font-family: Consolas;
+    color: #f1f1f1;
+    font-size: 24px;
+    font-weight: 100;
+}
+
+#module_window ul {
+    font-family: Consolas;
+    color: #f1f1f1;
+    font-size: 18px;
+    list-style: none;
+    margin: auto;
+    padding: 0;
+}
+
+#module_window li {
+    width: 140px;
+    border-radius: 30px;
+    border: 1px solid #45495b;
+    padding: 8px 0 8px 0;
+    text-align: center;    
+    margin: 20px auto 20px auto;
 }
 
 footer {
