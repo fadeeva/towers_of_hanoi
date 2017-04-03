@@ -19,11 +19,13 @@ function showLevelMenu() {
     levelMenu.style.display == 'none' ? levelMenu.style.display = 'block'
                                             : levelMenu.style.display = 'none';
     
+    darkScreen.style.left = screen.width / 2 - 363 + "px";
+    levelMenu.style.left = screen.width / 2 - 150 + "px";
+    
 }
 
 var darkScreen = document.getElementById("screen_dark");
 var levelMenu = document.getElementById("module_window");
-
 
 darkScreen.style.display = 'none';
 levelMenu.style.display = 'none';
