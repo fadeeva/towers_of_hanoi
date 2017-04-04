@@ -62,8 +62,8 @@ header, main, footer {
     
     position: absolute;
     z-index: 100;
-    top: 340px;
-    /*left: 470px;*/
+    /*top: 340px;
+    left: 470px;*/
 }
 
 #screen_dark {
@@ -73,9 +73,9 @@ header, main, footer {
     opacity: .7;
     
     position: absolute;
-    top: 312px;
-    /*left: 277px;*/
     z-index: 99;
+    /*top: 312px;
+    left: 277px;*/
 }
 
 #module_window, #screen_dark {

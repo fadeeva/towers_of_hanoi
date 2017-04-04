@@ -95,7 +95,7 @@ function handleMouseMove(event) {
         blank();
         
         ctx.fillStyle = disks.orange.color;
-        ctx.fillRect(canMouseX - 40, canMouseY - 20, disks.orange.width, 24);
+        ctx.fillRect(canMouseX - 60, canMouseY, disks.orange.width, 24);
         disks.orange.x = canMouseX - 40;
         disks.orange.y = canMouseY - 20;
     }
@@ -145,6 +145,13 @@ function drawGameBoard() {
     ctx.fillRect(118, 86, 6, 186);
     ctx.fillRect(347, 86, 6, 186);
     ctx.fillRect(578, 86, 6, 186);
+}
+
+function clean() {
+    // board
+    ctx.fillStyle = "#2e313d";
+    ctx.fillRect(0, 0, 726, 325);
+    drawGameBoard();
 }
 
 function drawDisks(oLevel) { 

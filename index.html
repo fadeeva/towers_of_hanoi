@@ -9,7 +9,17 @@
     <header>
        <img src="img/towers_of_hanoi_logo-3.png" alt="Temporary logo">
         <ul>
-            <li id="level">#01</li>
+            <li id="level">
+                <div id="level_number">#01</div>
+                <div id="close_btn">
+                    <svg version="1.1" id="close_btn" xmlns="http://www.w3.org/2000/svg"       xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+                        <line fill="#DF0030" stroke="#DF0030" stroke-width="2" stroke-miterlimit="10" x1="0" y1="0" x2="16" y2="16"/>
+                        <line fill="#DF0030" stroke="#DF0030" stroke-width="2" stroke-miterlimit="10" x1="16" y1="0" x2="0" y2="16"/>
+                    </svg>
+                </div>
+
+            </li>
             <li id="timer">00:00</li>
             <li id="start_stop">старт</li>
         </ul>
@@ -21,9 +31,9 @@
         <div id="module_window">
             <h2>Уровни</h2>
             <ul>
-                <li>#01</li>
-                <li>#02</li>
-                <li>#03</li>
+                <li class="select_level">#01</li>
+                <li class="select_level">#02</li>
+                <li class="select_level">#03</li>
             </ul>
         </div>
         <div id="screen_dark"></div>
