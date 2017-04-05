@@ -55,7 +55,7 @@ header, main, footer {
 
 #module_window {
     width: 300px;
-    height: 250px;
+    height: 450px;
     background: #2e313d;
     opacity: .9;
     box-shadow: 0px 0px 60px rgba(0, 0, 0, .7);
@@ -112,5 +112,6 @@ footer {
 }
 
 #canvas {
-    border: 1px solid #45495b;
+    /*border: 1px solid #45495b;*/
 }
+

@@ -7,41 +7,69 @@ var offsetX = document.getElementById('canvas').offsetLeft;
 var offsetY = document.getElementById('canvas').offsetTop;
 
 var disks = {        
-    blue   : { color: "#73cad4",
-               width: 32,
-               rodGap: 105,
-               isDragging: false,
-               changePlace: false,
-               x : 0,
-               y : 0},   
-    purple : { color: "#9a73d4",
-               width: 78,
-               rodGap: 83,
-               isDragging: false,
-               changePlace: false,
-               x : 0,
-               y : 0 },
-    orange : { color: "#d4b173",
-               width: 122,
-               rodGap: 61,
-               isDragging: false,
-               changePlace: false,
-               x : 0,
-               y : 0 },
-    green  : { color: "#afe66e",
-               width: 166,
-               rodGap: 39,
-               isDragging: false,
-               changePlace: false,
-               x : 0,
-               y : 0 },
-    pink   : { color: "#ed82b7",
-               width: 210,
-               rodGap: 17,
-               isDragging: false,
-               changePlace: false,
-               x : 0,
-               y : 0 },   
+    /*1*/turquoise : {  color: "#7fddad",
+                        width: 42,
+                        rodGap: 101,
+                        isDragging: false,
+                        changePlace: false,
+                        x : 0,
+                        y : 0 },
+    
+    /*2*/red : { color: "#e67b7d",
+                    width: 66,
+                    rodGap: 89,
+                    isDragging: false,
+                    changePlace: false,
+                    x : 0,
+                    y : 0 },
+    
+    /*3*/yellow : { color: "#e0e189",
+                    width: 90,
+                    rodGap: 77,
+                    isDragging: false,
+                    changePlace: false,
+                    x : 0,
+                    y : 0 },
+    
+    /*4*/blue   : { color: "#73cad4",
+                    width: 114,
+                    rodGap: 65,
+                    isDragging: false,
+                    changePlace: false,
+                    x : 0,
+                    y : 0},
+    
+    /*5*/purple : { color: "#9a73d4",
+                    width: 138,
+                    rodGap: 53,
+                    isDragging: false,
+                    changePlace: false,
+                    x : 0,
+                    y : 0 },
+    
+    /*6*/orange : { color: "#d4b173",
+                    width: 162,
+                    rodGap: 41,
+                    isDragging: false,
+                    changePlace: false,
+                    x : 0,
+                    y : 0 },
+    
+    /*7*/green  : { color: "#afe66e",
+                    width: 186,
+                    rodGap: 29,
+                    isDragging: false,
+                    changePlace: false,
+                    x : 0,
+                    y : 0 },
+    
+    /*8*/pink   : { color: "#ed82b7",
+                    width: 210,
+                    rodGap: 17,
+                    isDragging: false,
+                    changePlace: false,
+                    x : 0,
+                    y : 0 },
 }
 
 function init() {
@@ -142,9 +170,9 @@ function drawGameBoard() {
 
     // rods
     ctx.fillStyle = "#6b728e";
-    ctx.fillRect(118, 86, 6, 186);
-    ctx.fillRect(347, 86, 6, 186);
-    ctx.fillRect(578, 86, 6, 186);
+    ctx.fillRect(118, 66, 6, 206);
+    ctx.fillRect(347, 66, 6, 206);
+    ctx.fillRect(578, 66, 6, 206);
 }
 
 function clean() {
