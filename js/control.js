@@ -46,7 +46,10 @@ function toggleMenu() {
             showLevelMenu();
             break;
         case "start_stop" :
-            console.log("showMenu(start_stop)");
+            if(this.classList.contains('start'))
+                startWatch();
+            else
+                stopWatch();
             break;
         default :
             break;
@@ -81,3 +84,44 @@ function selectLevel(level, text) {
 }
 
 
+
+// timer
+var c = 0;
+var t;
+var timer_is_on = 0;
+var startStopBtn = document.getElementById('start_stop');
+
+function stopWatch(){
+    restartWatch();
+    clearInterval(interval);
+    timer_is_on = 0;
+    
+    startStopBtn.classList.toggle('start');
+    
+    startStopBtn.innerHTML == 'стоп' ? startStopBtn.innerHTML = 'старт'
+                                            : startStopBtn.innerHTML = 'стоп';
+}
+
+function timedCount(){
+    document.getElementById('timer').innerHTML = c;
+    c++;
+}
+
+function startWatch(){
+    restartWatch();
+    
+    startStopBtn.innerHTML == 'старт' ? startStopBtn.innerHTML = 'стоп'
+                                            : startStopBtn.innerHTML = 'старт';
+    
+    startStopBtn.classList.toggle('start');
+    
+    if(!timer_is_on){
+        timer_is_on = 1;        
+        interval = setInterval("timedCount()", 1000);        
+    }
+}
+
+function restartWatch(){
+    c = 0;
+    document.getElementById('timer').innerHTML = c;
+}
