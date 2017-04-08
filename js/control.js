@@ -81,6 +81,7 @@ function selectLevel(level, text) {
     drawDisks(level);
     showLevelMenu();
     levelNumber.innerHTML = text;
+    startWatch();
 }
 
 
@@ -90,6 +91,7 @@ var c = 0;
 var t;
 var timer_is_on = 0;
 var startStopBtn = document.getElementById('start_stop');
+var sec = 0, min = 0, timeStr = "";
 
 function stopWatch(){
     restartWatch();
@@ -104,6 +106,30 @@ function stopWatch(){
 
 function timedCount(){
     document.getElementById('timer').innerHTML = c;
+    
+    if(Math.floor(c/10) < 1)
+        document.getElementById('timer').innerHTML = "00:0" + c;
+    else if(Math.floor(c/10) >= 1 && Math.floor(c/10) < 6)
+        document.getElementById('timer').innerHTML = "00:" + c;
+    else if(Math.floor(c/10) >= 6 && Math.floor(c/10) < 36) {
+        
+        min = Math.floor(c / 60);
+        sec = c - (min * 60);
+        
+        if(min < 10)
+            timeStr = "0" + min + ":";
+        else
+            timeStr = min + ":";
+        
+        if(sec < 10)
+            timeStr += "0" + sec;
+        else
+            timeStr += sec;
+        
+        document.getElementById('timer').innerHTML = timeStr;
+    } else {
+        stopWatch()
+    }
     c++;
 }
 
@@ -123,5 +149,5 @@ function startWatch(){
 
 function restartWatch(){
     c = 0;
-    document.getElementById('timer').innerHTML = c;
+    document.getElementById('timer').innerHTML = "00:0" + c;
 }
