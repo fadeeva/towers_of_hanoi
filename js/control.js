@@ -1,3 +1,4 @@
+// menu's function
 var darkScreen = document.getElementById("screen_dark");
 var levelMenu = document.getElementById("module_window");
 var levelNumber = document.getElementById("level_number");
@@ -14,24 +15,24 @@ start_stop.addEventListener("click", toggleMenu);
 
 for (var i = 0; i < selectLevelClass.length; i++) {
     selectLevelClass[i].addEventListener('click', function(event) {
-        switch(this.innerHTML) {
+        switch(this.innerHTML.substring(0, 3)) {
             case "#01" :
-                selectLevel(level_1, this.innerHTML);
+                selectLevel(level_1, this.innerHTML.substring(0, 3));
                 break;
             case "#02" :
-                selectLevel(level_2, this.innerHTML);
+                selectLevel(level_2, this.innerHTML.substring(0, 3));
                 break;
             case "#03" :
-                selectLevel(level_3, this.innerHTML);
+                selectLevel(level_3, this.innerHTML.substring(0, 3));
                 break;
             case "#04" :
-                selectLevel(level_4, this.innerHTML);
+                selectLevel(level_4, this.innerHTML.substring(0, 3));
                 break;
             case "#05" :
-                selectLevel(level_5, this.innerHTML);
+                selectLevel(level_5, this.innerHTML.substring(0, 3));
                 break;
             case "#06" :
-                selectLevel(level_6, this.innerHTML);
+                selectLevel(level_6, this.innerHTML.substring(0, 3));
                 break;
             default :
                 break;
@@ -39,7 +40,6 @@ for (var i = 0; i < selectLevelClass.length; i++) {
     });
 }
 
-// menu's function
 function toggleMenu() {
     switch(this.id) {
         case "level" :
@@ -86,68 +86,4 @@ function selectLevel(level, text) {
 
 
 
-// timer
-var c = 0;
-var t;
-var timer_is_on = 0;
-var startStopBtn = document.getElementById('start_stop');
-var sec = 0, min = 0, timeStr = "";
 
-function stopWatch(){
-    restartWatch();
-    clearInterval(interval);
-    timer_is_on = 0;
-    
-    startStopBtn.classList.toggle('start');
-    
-    startStopBtn.innerHTML == 'стоп' ? startStopBtn.innerHTML = 'старт'
-                                            : startStopBtn.innerHTML = 'стоп';
-}
-
-function timedCount(){
-    document.getElementById('timer').innerHTML = c;
-    
-    if(Math.floor(c/10) < 1)
-        document.getElementById('timer').innerHTML = "00:0" + c;
-    else if(Math.floor(c/10) >= 1 && Math.floor(c/10) < 6)
-        document.getElementById('timer').innerHTML = "00:" + c;
-    else if(Math.floor(c/10) >= 6 && Math.floor(c/10) < 36) {
-        
-        min = Math.floor(c / 60);
-        sec = c - (min * 60);
-        
-        if(min < 10)
-            timeStr = "0" + min + ":";
-        else
-            timeStr = min + ":";
-        
-        if(sec < 10)
-            timeStr += "0" + sec;
-        else
-            timeStr += sec;
-        
-        document.getElementById('timer').innerHTML = timeStr;
-    } else {
-        stopWatch()
-    }
-    c++;
-}
-
-function startWatch(){
-    restartWatch();
-    
-    startStopBtn.innerHTML == 'старт' ? startStopBtn.innerHTML = 'стоп'
-                                            : startStopBtn.innerHTML = 'старт';
-    
-    startStopBtn.classList.toggle('start');
-    
-    if(!timer_is_on){
-        timer_is_on = 1;        
-        interval = setInterval("timedCount()", 1000);        
-    }
-}
-
-function restartWatch(){
-    c = 0;
-    document.getElementById('timer').innerHTML = "00:0" + c;
-}

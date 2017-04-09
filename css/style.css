@@ -8,7 +8,7 @@ body {
 }
 
 header img {
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 header ul {
@@ -62,8 +62,6 @@ header, main, footer {
     
     position: absolute;
     z-index: 100;
-    /*top: 340px;
-    left: 470px;*/
 }
 
 #screen_dark {
@@ -74,8 +72,6 @@ header, main, footer {
     
     position: absolute;
     z-index: 99;
-    /*top: 312px;
-    left: 277px;*/
 }
 
 #module_window, #screen_dark {
@@ -105,6 +101,11 @@ header, main, footer {
     padding: 8px 0 8px 0;
     text-align: center;    
     margin: 20px auto 20px auto;
+}
+
+.time_record {
+	font-size: 14px;
+    color: #afe66e;
 }
 
 footer {
