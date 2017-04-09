@@ -92,27 +92,35 @@ function blank() {
 
 var currentDisk = null;
 function handleMouseDown(event) { 
+    event = event || window.event;
+    
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
 
-    currentDisk = whatDisk();
+    currentDisk = whatDisk(event);
     console.log(currentDisk)
     disks.orange.isDragging = true;
 }
 
 function handleMouseUp(event) {    
+    event = event || window.event;
+    
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
     disks.orange.isDragging = false;
 }
 
 function handleMouseOut(event) { 
+    event = event || window.event;
+    
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
     disks.orange.isDragging = false;
 }
 
 function handleMouseMove(event) {
+    event = event || window.event;
+    
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
     
@@ -137,7 +145,7 @@ function handleMouseMove(event) {
 
 
 
-function whatDisk() {
+function whatDisk(event) {
     var cursorX = event.clientX - offsetX;
     var cursorY = event.clientY - offsetY;
     
