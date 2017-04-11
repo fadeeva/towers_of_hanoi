@@ -13,29 +13,11 @@ levelNumber.style.display = 'block';
 level.addEventListener("click", toggleMenu);
 start_stop.addEventListener("click", toggleMenu);
 
-for (var i = 0; i < selectLevelClass.length; i++) {
+for(var i = 0; i < selectLevelClass.length; i++) {
     selectLevelClass[i].addEventListener('click', function(event) {
-        switch(this.innerHTML.substring(0, 3)) {
-            case "#01" :
-                selectLevel(level_1, this.innerHTML.substring(0, 3));
-                break;
-            case "#02" :
-                selectLevel(level_2, this.innerHTML.substring(0, 3));
-                break;
-            case "#03" :
-                selectLevel(level_3, this.innerHTML.substring(0, 3));
-                break;
-            case "#04" :
-                selectLevel(level_4, this.innerHTML.substring(0, 3));
-                break;
-            case "#05" :
-                selectLevel(level_5, this.innerHTML.substring(0, 3));
-                break;
-            case "#06" :
-                selectLevel(level_6, this.innerHTML.substring(0, 3));
-                break;
-            default :
-                break;
+        var getLevelFromMenu = Math.abs(parseInt(this.innerHTML.substring(1, 3)));
+        if(getLevelFromMenu < levels.length) {
+            selectLevel(levels[getLevelFromMenu], this.innerHTML.substring(0, 3));
         }
     });
 }
@@ -57,14 +39,16 @@ function toggleMenu() {
 }
 
 function showLevelMenu() { 
+    var width = document.getElementsByTagName('body')[0].clientWidth;
+    
     darkScreen.style.display == 'none' ? darkScreen.style.display = 'block'
                                             : darkScreen.style.display = 'none';
     
     levelMenu.style.display == 'none' ? levelMenu.style.display = 'block'
                                             : levelMenu.style.display = 'none';
     
-    darkScreen.style.left = screen.width / 2 - 363 + "px";
-    levelMenu.style.left = screen.width / 2 - 150 + "px";
+    darkScreen.style.left = width / 2 - 355 + "px";
+    levelMenu.style.left = width / 2 - 140 + "px";
     
     darkScreen.style.top = theCanvas.offsetTop + 1 + "px";
     levelMenu.style.top = theCanvas.offsetTop - 60 + "px";

@@ -15,7 +15,6 @@ function stopWatch() {
     clearInterval(interval);
     timer_is_on = 0;
     
-    //startStopBtn.classList.toggle('start');
     if(!startStopBtn.classList.contains('start'))
         startStopBtn.classList.toggle('start');
     

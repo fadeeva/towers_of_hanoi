@@ -6,78 +6,13 @@ var ctx = null;
 var offsetX = document.getElementById('canvas').offsetLeft;
 var offsetY = document.getElementById('canvas').offsetTop;
 
-var disks = {        
-    /*1*/turquoise : {  color: "#7fddad",
-                        width: 42,
-                        rodGap: 101,
-                        isDragging: false,
-                        changePlace: false,
-                        x : 0,
-                        y : 0 },
-    
-    /*2*/red : { color: "#e67b7d",
-                    width: 66,
-                    rodGap: 89,
-                    isDragging: false,
-                    changePlace: false,
-                    x : 0,
-                    y : 0 },
-    
-    /*3*/yellow : { color: "#e0e189",
-                    width: 90,
-                    rodGap: 77,
-                    isDragging: false,
-                    changePlace: false,
-                    x : 0,
-                    y : 0 },
-    
-    /*4*/blue   : { color: "#73cad4",
-                    width: 114,
-                    rodGap: 65,
-                    isDragging: false,
-                    changePlace: false,
-                    x : 0,
-                    y : 0},
-    
-    /*5*/purple : { color: "#9a73d4",
-                    width: 138,
-                    rodGap: 53,
-                    isDragging: false,
-                    changePlace: false,
-                    x : 0,
-                    y : 0 },
-    
-    /*6*/orange : { color: "#d4b173",
-                    width: 162,
-                    rodGap: 41,
-                    isDragging: false,
-                    changePlace: false,
-                    x : 0,
-                    y : 0 },
-    
-    /*7*/green  : { color: "#afe66e",
-                    width: 186,
-                    rodGap: 29,
-                    isDragging: false,
-                    changePlace: false,
-                    x : 0,
-                    y : 0 },
-    
-    /*8*/pink   : { color: "#ed82b7",
-                    width: 210,
-                    rodGap: 17,
-                    isDragging: false,
-                    changePlace: false,
-                    x : 0,
-                    y : 0 },
-}
-
 function init() {
     theCanvas = document.getElementById('canvas');
     ctx = theCanvas.getContext("2d");
     
     drawGameBoard();
-    drawDisks(level_1);
+    drawDisks(levels[1]);
+    getTimeRecord();
     
     theCanvas.addEventListener("mousedown", handleMouseDown);
     theCanvas.addEventListener("mousemove", handleMouseMove);
@@ -87,7 +22,7 @@ function init() {
 
 function blank() {
     drawGameBoard();
-    drawDisks(level_1);
+    drawDisks(levels[1]);
 }
 
 var currentDisk = null;
