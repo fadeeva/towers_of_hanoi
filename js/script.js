@@ -12,7 +12,7 @@ function init() {
     
     drawGameBoard();
     drawDisks(levels[1]);
-    getTimeRecord();
+    getListTimeRecord();
     
     theCanvas.addEventListener("mousedown", handleMouseDown);
     theCanvas.addEventListener("mousemove", handleMouseMove);

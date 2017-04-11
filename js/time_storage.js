@@ -1,4 +1,4 @@
-function getTimeRecord() {
+function getListTimeRecord() {
 
     if(!localStorage.getItem("#01"))
         localStorage.setItem("#01", "00:00");
@@ -18,5 +18,10 @@ function getTimeRecord() {
     timeRecords.forEach(function(item, i, timeRecords) {
         item.innerHTML = localStorage.getItem("#0" + (i + 1))
     })
+}
 
+function getTimeRecord(level) {
+    var str = localStorage.getItem(level);
+    var sec = parseInt(str.substring(0, 3)) * 60 + parseInt(str.substring(3))
+    return sec;
 }

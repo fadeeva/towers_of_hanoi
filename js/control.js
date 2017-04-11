@@ -68,6 +68,21 @@ function selectLevel(level, text) {
     startWatch();
 }
 
+function getCurrentTime() {
+    var str = document.getElementById("timer").innerHTML;
+    var arrCurrentTime = {}
+    
+    arrCurrentTime = {
+        strTime : str,
+        sec : parseInt(str.substring(0, 3)) * 60 + parseInt(str.substring(3))
+    }
+    return arrCurrentTime;
+}
 
-
+function isNewRecord(level, arrCurrentTime) {
+    var oldTime = getTimeRecord(level);
+    var newTime = arrCurrentTime.sec;
+    if(oldTime == 0 || newTime < oldTime) return true;
+    return false;
+}
 
