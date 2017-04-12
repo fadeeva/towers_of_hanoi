@@ -1,5 +1,13 @@
 // game's disks
-var disks = {        
+var disks = {
+    /*0*/invisible : {  color: "rgba(0, 0, 0, .0)",
+                        width: 0,
+                        rodGap: 0,
+                        isDragging: false,
+                        changePlace: false,
+                        x : 0,
+                        y : 0 },
+    
     /*1*/turquoise : {  color: "#7fddad",
                         width: 42,
                         rodGap: 101,

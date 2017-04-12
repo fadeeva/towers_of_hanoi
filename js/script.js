@@ -25,7 +25,8 @@ function blank() {
     drawDisks(levels[1]);
 }
 
-var currentDisk = null;
+var currentDisk = disks.invisible;
+console.log(currentDisk)
 function handleMouseDown(event) { 
     event = event || window.event;
     
@@ -33,8 +34,8 @@ function handleMouseDown(event) {
     canMouseY = parseInt(event.clientY-offsetY);
 
     currentDisk = whatDisk(event);
-    console.log(currentDisk)
-    disks.orange.isDragging = true;
+    //console.log(currentDisk)
+    currentDisk.isDragging = true;
 }
 
 function handleMouseUp(event) {    
@@ -42,7 +43,9 @@ function handleMouseUp(event) {
     
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
-    disks.orange.isDragging = false;
+    
+    currentDisk.isDragging = false;
+    currentDisk = disks.invisible;
 }
 
 function handleMouseOut(event) { 
@@ -50,7 +53,7 @@ function handleMouseOut(event) {
     
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
-    disks.orange.isDragging = false;
+    currentDisk.isDragging = false;
 }
 
 function handleMouseMove(event) {
@@ -59,16 +62,24 @@ function handleMouseMove(event) {
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
     
-    if(disks.orange.isDragging){
+    if(currentDisk.isDragging){
         ctx.clearRect(0,0,726,325);
         
-        disks.orange.changePlace = true;
+        currentDisk.changePlace = true;
         blank();
         
-        ctx.fillStyle = disks.orange.color;
-        ctx.fillRect(canMouseX - 60, canMouseY, disks.orange.width, 24);
-        disks.orange.x = canMouseX - 40;
-        disks.orange.y = canMouseY - 20;
+        ctx.fillStyle = currentDisk.color;
+        ctx.fillRect(canMouseX - 60, canMouseY, currentDisk.width, 24);
+        currentDisk.x = canMouseX - 40;
+        currentDisk.y = canMouseY - 20;
+    } else {
+        //blank()
+        currentDisk.x = 0;
+        currentDisk.y = 0;
+        currentDisk.changePlace = false;
+        
+        ctx.fillStyle = currentDisk.color;
+        ctx.fillRect(currentDisk.rodGap, 248, currentDisk.width, 24);
     }
 }
 
@@ -83,8 +94,9 @@ function handleMouseMove(event) {
 function whatDisk(event) {
     var cursorX = event.clientX - offsetX;
     var cursorY = event.clientY - offsetY;
-    
+    console.log(event.clientX + " : " + event.clientY)
     for(var i in disks) {
+        
         if((cursorX >= disks[i].x) && (cursorX <= disks[i].x + disks[i].width) &&
            (cursorY >= disks[i].y) && (cursorY <= disks[i].y + 24)) {
             
