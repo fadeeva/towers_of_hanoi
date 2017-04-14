@@ -25,7 +25,7 @@ function blank() {
     drawDisks(levels[1]);
 }
 
-var currentDisk = disks.invisible;
+var currentDisk = disks.orange;
 console.log(currentDisk)
 function handleMouseDown(event) { 
     event = event || window.event;
@@ -33,8 +33,8 @@ function handleMouseDown(event) {
     canMouseX = parseInt(event.clientX-offsetX);
     canMouseY = parseInt(event.clientY-offsetY);
 
-    currentDisk = whatDisk(event);
-    //console.log(currentDisk)
+    //currentDisk = whatDisk(event);
+    console.log(whatDisk(event))
     currentDisk.isDragging = true;
 }
 
@@ -45,7 +45,7 @@ function handleMouseUp(event) {
     canMouseY = parseInt(event.clientY-offsetY);
     
     currentDisk.isDragging = false;
-    currentDisk = disks.invisible;
+    comeBack(currentDisk);
 }
 
 function handleMouseOut(event) { 
@@ -55,6 +55,8 @@ function handleMouseOut(event) {
     canMouseY = parseInt(event.clientY-offsetY);
     currentDisk.isDragging = false;
 }
+
+
 
 function handleMouseMove(event) {
     event = event || window.event;
@@ -69,17 +71,9 @@ function handleMouseMove(event) {
         blank();
         
         ctx.fillStyle = currentDisk.color;
-        ctx.fillRect(canMouseX - 60, canMouseY, currentDisk.width, 24);
+        ctx.fillRect(canMouseX - 70, canMouseY - 10, currentDisk.width, 24);
         currentDisk.x = canMouseX - 40;
         currentDisk.y = canMouseY - 20;
-    } else {
-        //blank()
-        currentDisk.x = 0;
-        currentDisk.y = 0;
-        currentDisk.changePlace = false;
-        
-        ctx.fillStyle = currentDisk.color;
-        ctx.fillRect(currentDisk.rodGap, 248, currentDisk.width, 24);
     }
 }
 
@@ -88,20 +82,29 @@ function handleMouseMove(event) {
 
 
 
-
+function comeBack(disk) {
+    disk.x = disk.rodGap;
+    disk.y = 50;
+    disk.changePlace = false;
+    
+    clean();
+    drawDisks(levels[1])
+}
 
 
 function whatDisk(event) {
-    var cursorX = event.clientX - offsetX;
-    var cursorY = event.clientY - offsetY;
-    console.log(event.clientX + " : " + event.clientY)
+    var cursorX = parseInt(event.clientX-offsetX);
+    var cursorY = parseInt(event.clientY-offsetY);
+    
     for(var i in disks) {
         
         if((cursorX >= disks[i].x) && (cursorX <= disks[i].x + disks[i].width) &&
            (cursorY >= disks[i].y) && (cursorY <= disks[i].y + 24)) {
             
-            console.log(i)
+            console.log(disks[i].y)
             return disks[i];
+        } else {
+            return false;
         }
     }
 }
@@ -137,9 +140,10 @@ function clean() {
     drawGameBoard();
 }
 
+var height = 248;
 function drawDisks(oLevel) { 
     oLevel = (typeof oLevel !== "object") ? {} : oLevel;
-    var height = 248;
+    
     var rod = [];
     var rodGap = 0;
 
