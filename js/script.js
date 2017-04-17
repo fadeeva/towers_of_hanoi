@@ -6,12 +6,14 @@ var ctx = null;
 var offsetX = document.getElementById('canvas').offsetLeft;
 var offsetY = document.getElementById('canvas').offsetTop;
 
+
+var currentLevel = levels[1];
 function init() {
     theCanvas = document.getElementById('canvas');
     ctx = theCanvas.getContext("2d");
     
     drawGameBoard();
-    drawDisks(levels[1]);
+    drawDisks(currentLevel);
     getListTimeRecord();
     
     theCanvas.addEventListener("mousedown", handleMouseDown);
@@ -22,27 +24,26 @@ function init() {
 
 function blank() {
     drawGameBoard();
-    drawDisks(levels[1]);
+    drawDisks(currentLevel);
 }
 
-var currentDisk = disks.orange;
-console.log(currentDisk)
+var currentDisk = disks.invisible;
 function handleMouseDown(event) { 
     event = event || window.event;
     
-    canMouseX = parseInt(event.clientX-offsetX);
-    canMouseY = parseInt(event.clientY-offsetY);
-
-    //currentDisk = whatDisk(event);
-    console.log(whatDisk(event))
+    canMouseX = parseInt(event.pageX-offsetX);
+    canMouseY = parseInt(event.pageY-offsetY);
+    
+    currentDisk = whatDisk(event);
+    //console.log(whatDisk(event))
     currentDisk.isDragging = true;
 }
 
 function handleMouseUp(event) {    
     event = event || window.event;
     
-    canMouseX = parseInt(event.clientX-offsetX);
-    canMouseY = parseInt(event.clientY-offsetY);
+    canMouseX = parseInt(event.pageX-offsetX);
+    canMouseY = parseInt(event.pageY-offsetY);
     
     currentDisk.isDragging = false;
     comeBack(currentDisk);
@@ -51,18 +52,17 @@ function handleMouseUp(event) {
 function handleMouseOut(event) { 
     event = event || window.event;
     
-    canMouseX = parseInt(event.clientX-offsetX);
-    canMouseY = parseInt(event.clientY-offsetY);
+    canMouseX = parseInt(event.pageX-offsetX);
+    canMouseY = parseInt(event.pageY-offsetY);
     currentDisk.isDragging = false;
 }
-
 
 
 function handleMouseMove(event) {
     event = event || window.event;
     
-    canMouseX = parseInt(event.clientX-offsetX);
-    canMouseY = parseInt(event.clientY-offsetY);
+    canMouseX = parseInt(event.pageX-offsetX);
+    canMouseY = parseInt(event.pageY-offsetY);
     
     if(currentDisk.isDragging){
         ctx.clearRect(0,0,726,325);
@@ -88,25 +88,23 @@ function comeBack(disk) {
     disk.changePlace = false;
     
     clean();
-    drawDisks(levels[1])
+    drawDisks(currentLevel)
 }
 
 
 function whatDisk(event) {
-    var cursorX = parseInt(event.clientX-offsetX);
-    var cursorY = parseInt(event.clientY-offsetY);
+    var cursorX = parseInt(event.pageX-offsetX);
+    var cursorY = parseInt(event.pageY-offsetY);
     
     for(var i in disks) {
-        
         if((cursorX >= disks[i].x) && (cursorX <= disks[i].x + disks[i].width) &&
            (cursorY >= disks[i].y) && (cursorY <= disks[i].y + 24)) {
             
-            console.log(disks[i].y)
             return disks[i];
-        } else {
-            return false;
         }
     }
+    
+    return disks.invisible
 }
 
 function drawGameBoard() {
@@ -146,14 +144,13 @@ function drawDisks(oLevel) {
     
     var rod = [];
     var rodGap = 0;
-
+    
     for(var key in oLevel) {
         rod = oLevel[key];
-        rodNumber = parseInt(key[4]);
-
+        rodNumber = parseInt(key[4]);       
+        
         if(rod.length) {                       
             rod.forEach(function(disk, i, arr) {
-                
                 if(disk.changePlace) return
                 
                 if(rodNumber == 1) {
@@ -167,12 +164,19 @@ function drawDisks(oLevel) {
                 disk.x = rodGap;
                 disk.y = height;
                 
+                /*for(var j = 0; j < Object.keys(disks).length; j++) {
+                    if(Object.values(disks)[j] == disk) {
+                        Object.values(disks)[j].x = rodGap;
+                        Object.values(disks)[j].y = height;
+                        break;
+                    }
+                }*/
+                
                 ctx.fillStyle = disk.color;
                 ctx.fillRect(rodGap, height, disk.width, 24);
                 height -= 24;
             });
         }
-
         height = 248;
     }
 }
