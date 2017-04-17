@@ -164,14 +164,6 @@ function drawDisks(oLevel) {
                 disk.x = rodGap;
                 disk.y = height;
                 
-                /*for(var j = 0; j < Object.keys(disks).length; j++) {
-                    if(Object.values(disks)[j] == disk) {
-                        Object.values(disks)[j].x = rodGap;
-                        Object.values(disks)[j].y = height;
-                        break;
-                    }
-                }*/
-                
                 ctx.fillStyle = disk.color;
                 ctx.fillRect(rodGap, height, disk.width, 24);
                 height -= 24;
