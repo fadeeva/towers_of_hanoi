@@ -35,8 +35,12 @@ function handleMouseDown(event) {
     canMouseY = parseInt(event.pageY-offsetY);
     
     currentDisk = whatDisk(event);
-    //console.log(whatDisk(event))
-    currentDisk.isDragging = true;
+    
+    if(isDraggable(currentDisk)) {
+        currentDisk.isDragging = true;
+    } else {
+        currentDisk = disks.invisible;
+    }
 }
 
 function handleMouseUp(event) {    
@@ -46,7 +50,12 @@ function handleMouseUp(event) {
     canMouseY = parseInt(event.pageY-offsetY);
     
     currentDisk.isDragging = false;
-    comeBack(currentDisk);
+    
+    if(canMouseX > 330 && canMouseX < 370 && canMouseY > 50 && canMouseY < 200) {
+        goToRod(currentDisk);
+    } else {
+        comeBack(currentDisk);
+    }
 }
 
 function handleMouseOut(event) { 
@@ -77,10 +86,36 @@ function handleMouseMove(event) {
     }
 }
 
+function isDraggable(disk) {
+    for(var i in currentLevel) {
+        if(currentLevel[i][currentLevel[i].length - 1] == disk) {
+            return true;
+        }
+    }
+    return false;
+}
 
-
-
-
+// temporary function
+function goToRod(disk) {
+    var currentRod;
+    
+    for(var i in currentLevel) {
+        if(currentLevel[i][currentLevel[i].length - 1] == disk) {
+            currentRod = currentLevel[i];
+            break;
+        }
+    }
+    
+    currentRod.pop();
+    currentLevel.rod_2.push(disk);
+    
+    disk.x = disk.rodGap * 3 + (disk.width - 12);
+    disk.y = 24;
+    disk.changePlace = false;
+    
+    clean();
+    drawDisks(currentLevel);
+}
 
 function comeBack(disk) {
     disk.x = disk.rodGap;
@@ -90,7 +125,6 @@ function comeBack(disk) {
     clean();
     drawDisks(currentLevel)
 }
-
 
 function whatDisk(event) {
     var cursorX = parseInt(event.pageX-offsetX);
@@ -172,7 +206,6 @@ function drawDisks(oLevel) {
         height = 248;
     }
 }
-
 
 
 
