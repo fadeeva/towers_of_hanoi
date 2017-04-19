@@ -65,6 +65,7 @@ function selectLevel(level, text) {
     drawDisks(level);
     showLevelMenu();
     levelNumber.innerHTML = text;
+    currentLevel = level;
     startWatch();
 }
 

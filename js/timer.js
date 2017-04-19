@@ -28,7 +28,7 @@ function timedCount() {
         document.getElementById('timer').innerHTML = "00:0" + c;
     else if(Math.floor(c / 10) >= 1 && Math.floor(c / 10) < 6)
         document.getElementById('timer').innerHTML = "00:" + c;
-    else if(Math.floor(c / 10) >= 6 && Math.floor(c / 10) < 36) {
+    else if(Math.floor(c / 10) >= 6 && Math.floor(c / 10) < 355) {
         
         min = Math.floor(c / 60);
         sec = c - (min * 60);

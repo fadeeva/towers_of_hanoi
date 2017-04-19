@@ -6,7 +6,6 @@ var ctx = null;
 var offsetX = document.getElementById('canvas').offsetLeft;
 var offsetY = document.getElementById('canvas').offsetTop;
 
-
 var currentLevel = levels[1];
 function init() {
     theCanvas = document.getElementById('canvas');
@@ -31,9 +30,6 @@ var currentDisk = disks.invisible;
 function handleMouseDown(event) { 
     event = event || window.event;
     
-    canMouseX = parseInt(event.pageX-offsetX);
-    canMouseY = parseInt(event.pageY-offsetY);
-    
     currentDisk = whatDisk(event);
     
     if(isDraggable(currentDisk)) {
@@ -46,23 +42,13 @@ function handleMouseDown(event) {
 function handleMouseUp(event) {    
     event = event || window.event;
     
-    canMouseX = parseInt(event.pageX-offsetX);
-    canMouseY = parseInt(event.pageY-offsetY);
-    
     currentDisk.isDragging = false;
-    
-    if(canMouseX > 330 && canMouseX < 370 && canMouseY > 50 && canMouseY < 200) {
-        goToRod(currentDisk);
-    } else {
-        comeBack(currentDisk);
-    }
+    goToRod(currentDisk);
 }
 
 function handleMouseOut(event) { 
     event = event || window.event;
-    
-    canMouseX = parseInt(event.pageX-offsetX);
-    canMouseY = parseInt(event.pageY-offsetY);
+
     currentDisk.isDragging = false;
 }
 
@@ -70,8 +56,8 @@ function handleMouseOut(event) {
 function handleMouseMove(event) {
     event = event || window.event;
     
-    canMouseX = parseInt(event.pageX-offsetX);
-    canMouseY = parseInt(event.pageY-offsetY);
+    var canMouseX = parseInt(event.pageX-offsetX);
+    var canMouseY = parseInt(event.pageY-offsetY);
     
     if(currentDisk.isDragging){
         ctx.clearRect(0,0,726,325);
@@ -98,6 +84,21 @@ function isDraggable(disk) {
 // temporary function
 function goToRod(disk) {
     var currentRod;
+    var purposeRod;
+    
+    var canMouseX = parseInt(event.pageX-offsetX);
+    var canMouseY = parseInt(event.pageY-offsetY);
+    
+    if(canMouseX > 100 && canMouseX < 130 && canMouseY > 60 && canMouseY < 200) {
+        purposeRod = currentLevel.rod_1;
+    } else if(canMouseX > 330 && canMouseX < 370 && canMouseY > 60 && canMouseY < 200) {
+        purposeRod = currentLevel.rod_2;
+    } else if(canMouseX > 550 && canMouseX < 600 && canMouseY > 60 && canMouseY < 200) {
+        purposeRod = currentLevel.rod_3;
+    } else {
+        comeBack(currentDisk);
+        return;
+    }
     
     for(var i in currentLevel) {
         if(currentLevel[i][currentLevel[i].length - 1] == disk) {
@@ -106,20 +107,23 @@ function goToRod(disk) {
         }
     }
     
+    if(purposeRod.length != 0) {
+        if(purposeRod[purposeRod.length - 1].width < currentRod[currentRod.length - 1].width) {
+            comeBack(currentDisk);
+            return;
+        }   
+    }
+       
     currentRod.pop();
-    currentLevel.rod_2.push(disk);
-    
-    disk.x = disk.rodGap * 3 + (disk.width - 12);
-    disk.y = 24;
+    purposeRod.push(disk);
+
     disk.changePlace = false;
-    
+
     clean();
     drawDisks(currentLevel);
 }
 
 function comeBack(disk) {
-    disk.x = disk.rodGap;
-    disk.y = 50;
     disk.changePlace = false;
     
     clean();
