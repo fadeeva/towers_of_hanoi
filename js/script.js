@@ -121,6 +121,31 @@ function goToRod(disk) {
 
     clean();
     drawDisks(currentLevel);
+    
+    if(isWin(currentLevel)) {
+        console.log("win");
+        turnLevelToStartPosition(currentLevel);
+    } else {
+        console.log("continue game")
+    }
+}
+
+function turnLevelToStartPosition(level) {
+    if(level.rod_2.length != 0) {
+        level.rod_1 = level.rod_2;
+        level.rod_2 = [];
+    } else {
+        level.rod_1 = level.rod_3;
+        level.rod_3 = [];
+    }
+}
+
+function isWin(level) {
+    if(level.rod_1.length == 0 && (level.rod_2.length == 0 || level.rod_3.length == 0)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function comeBack(disk) {
