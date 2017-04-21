@@ -41,13 +41,13 @@ function toggleMenu() {
             }
             break;
             
-        case "start_stop" :
+        /*case "start_stop" :
             if(this.classList.contains('start')) {
                 startWatch();
             } else {
                 stopWatch();
             }
-            break;
+            break;*/
         default :
             break;
     }
