@@ -1,4 +1,3 @@
-// timer
 var c = 0;
 var t;
 var timer_is_on = 0;
@@ -18,7 +17,9 @@ function stopWatch() {
     if(!startStopBtn.classList.contains('start'))
         startStopBtn.classList.toggle('start');
     
-   if (startStopBtn.innerHTML === 'стоп') startStopBtn.innerHTML = 'старт';
+    if (startStopBtn.innerHTML === 'стоп') startStopBtn.innerHTML = 'старт';
+    
+    stopFlag = true;
 }
 
 function timedCount() {

@@ -4,6 +4,7 @@ var levelMenu = document.getElementById("module_window");
 var levelNumber = document.getElementById("level_number");
 var closeBtn = document.getElementById("close_btn");
 var selectLevelClass = document.querySelectorAll(".select_level");
+var whatClose = false;
 
 darkScreen.style.display = 'none';
 levelMenu.style.display = 'none';
@@ -25,13 +26,27 @@ for(var i = 0; i < selectLevelClass.length; i++) {
 function toggleMenu() {
     switch(this.id) {
         case "level" :
-            showLevelMenu();
+            switch(whatClose) {
+                case "level" :
+                    showLevelMenu();
+                    whatClose = "";
+                    break;
+                case "win_window" :
+                    showWinWindow();
+                    whatClose = "";
+                    break;
+                default :
+                    showLevelMenu();
+                    break;
+            }
             break;
+            
         case "start_stop" :
-            if(this.classList.contains('start'))
+            if(this.classList.contains('start')) {
                 startWatch();
-            else
+            } else {
                 stopWatch();
+            }
             break;
         default :
             break;
@@ -39,6 +54,7 @@ function toggleMenu() {
 }
 
 function showLevelMenu() { 
+    close = "level";
     var width = document.getElementsByTagName('body')[0].clientWidth;
     
     darkScreen.style.display == 'none' ? darkScreen.style.display = 'block'
@@ -69,21 +85,44 @@ function selectLevel(level, text) {
     startWatch();
 }
 
-function getCurrentTime() {
-    var str = document.getElementById("timer").innerHTML;
-    var arrCurrentTime = {}
+function showWinWindow() {
+    var width = document.getElementsByTagName('body')[0].clientWidth;
+    var winWindow = document.getElementById("win_window");
     
-    arrCurrentTime = {
-        strTime : str,
-        sec : parseInt(str.substring(0, 3)) * 60 + parseInt(str.substring(3))
+    whatClose = "win_window";
+    
+    darkScreen.style.display == 'none' ? darkScreen.style.display = 'block'
+                                            : darkScreen.style.display = 'none';
+    
+    winWindow.style.display == 'block' ? winWindow.style.display = 'none'
+                                            : winWindow.style.display = 'block';
+    
+    darkScreen.style.left = width / 2 - 355 + "px";
+    winWindow.style.left = width / 2 - 140 + "px";
+    
+    darkScreen.style.top = theCanvas.offsetTop + 1 + "px";
+    winWindow.style.top = theCanvas.offsetTop + 40 + "px";
+    
+    levelNumber.style.display == 'block' ? levelNumber.style.display = 'none'
+                                            : levelNumber.style.display = 'block';
+    
+    closeBtn.style.display == 'none' ? closeBtn.style.display = 'block'
+                                            : closeBtn.style.display = 'none';
+    
+    var currentTime = document.getElementById("big_time_record");
+    var arrTime = getCurrentTime()
+    currentTime.innerHTML = arrTime.strTime;
+    
+    if(arrTime.sec) {
+        if(isNewRecord(levelNumber.innerHTML, arrTime)) {
+            document.getElementById("not_time_record").style.display = 'none';
+            document.getElementById("new_time_record").style.display = 'block';
+        } else {
+            document.getElementById("new_time_record").style.display = 'none';
+            document.getElementById("not_time_record").style.display = 'block';
+        }
     }
-    return arrCurrentTime;
-}
-
-function isNewRecord(level, arrCurrentTime) {
-    var oldTime = getTimeRecord(level);
-    var newTime = arrCurrentTime.sec;
-    if(oldTime == 0 || newTime < oldTime) return true;
-    return false;
+    
+    
 }
 

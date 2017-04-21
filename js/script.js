@@ -27,10 +27,16 @@ function blank() {
 }
 
 var currentDisk = disks.invisible;
+var timeStart = false;
 function handleMouseDown(event) { 
     event = event || window.event;
     
     currentDisk = whatDisk(event);
+    
+    if(!timeStart) {
+        timeStart = true;
+        startWatch();
+    }
     
     if(isDraggable(currentDisk)) {
         currentDisk.isDragging = true;
@@ -43,7 +49,7 @@ function handleMouseUp(event) {
     event = event || window.event;
     
     currentDisk.isDragging = false;
-    goToRod(currentDisk);
+    goToRod(currentDisk, event);
 }
 
 function handleMouseOut(event) { 
@@ -66,9 +72,7 @@ function handleMouseMove(event) {
         blank();
         
         ctx.fillStyle = currentDisk.color;
-        ctx.fillRect(canMouseX - 70, canMouseY - 10, currentDisk.width, 24);
-        currentDisk.x = canMouseX - 40;
-        currentDisk.y = canMouseY - 20;
+        ctx.fillRect(canMouseX - currentDisk.width / 2, canMouseY - 10, currentDisk.width, 24);
     }
 }
 
@@ -82,7 +86,7 @@ function isDraggable(disk) {
 }
 
 // temporary function
-function goToRod(disk) {
+function goToRod(disk, event) {
     var currentRod;
     var purposeRod;
     
@@ -123,20 +127,25 @@ function goToRod(disk) {
     drawDisks(currentLevel);
     
     if(isWin(currentLevel)) {
-        console.log("win");
+        showWinWindow()
         turnLevelToStartPosition(currentLevel);
-    } else {
-        console.log("continue game")
+        stopWatch();
+        timeStart = false;
+        clean();
+        drawDisks(currentLevel);
     }
 }
 
-function turnLevelToStartPosition(level) {
-    if(level.rod_2.length != 0) {
+function turnLevelToStartPosition(level) {   
+    if(level.rod_1.length == 0 && level.rod_2.length != 0) {
         level.rod_1 = level.rod_2;
         level.rod_2 = [];
-    } else {
+    } else if(level.rod_1.length == 0 && level.rod_3.length != 0) {
         level.rod_1 = level.rod_3;
         level.rod_3 = [];
+    } else {
+        level.rod_1.concat(level.rod_2, level.rod_3);
+        console.log(level)
     }
 }
 
@@ -235,12 +244,5 @@ function drawDisks(oLevel) {
         height = 248;
     }
 }
-
-
-
-
-
-
-
 
 
