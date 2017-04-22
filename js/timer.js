@@ -17,7 +17,7 @@ function stopWatch() {
     if(!startStopBtn.classList.contains('start'))
         startStopBtn.classList.toggle('start');
     
-    if (startStopBtn.innerHTML === 'стоп') startStopBtn.innerHTML = 'старт';
+    if (startStopBtn.innerHTML === 'старт') startStopBtn.innerHTML = 'стоп';
     
     stopFlag = true;
 }
@@ -54,7 +54,7 @@ function timedCount() {
 function startWatch() {
     restartWatch();
     
-    if(startStopBtn.innerHTML === 'старт') startStopBtn.innerHTML = 'стоп';
+    if(startStopBtn.innerHTML === 'стоп') startStopBtn.innerHTML = 'старт';
     
     if(startStopBtn.classList.contains('start'))
         startStopBtn.classList.toggle('start');

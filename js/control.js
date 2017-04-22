@@ -39,15 +39,7 @@ function toggleMenu() {
                     showLevelMenu();
                     break;
             }
-            break;
-            
-        /*case "start_stop" :
-            if(this.classList.contains('start')) {
-                startWatch();
-            } else {
-                stopWatch();
-            }
-            break;*/
+        break;
         default :
             break;
     }

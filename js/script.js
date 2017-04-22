@@ -7,6 +7,10 @@ var offsetX = document.getElementById('canvas').offsetLeft;
 var offsetY = document.getElementById('canvas').offsetTop;
 
 var currentLevel = levels[1];
+var currentDisk = disks.invisible;
+var timeStart = false; // flag for timer
+var height = 248; // start height for disk position 
+
 function init() {
     theCanvas = document.getElementById('canvas');
     ctx = theCanvas.getContext("2d");
@@ -26,8 +30,6 @@ function blank() {
     drawDisks(currentLevel);
 }
 
-var currentDisk = disks.invisible;
-var timeStart = false;
 function handleMouseDown(event) { 
     event = event || window.event;
     
@@ -49,7 +51,7 @@ function handleMouseUp(event) {
     event = event || window.event;
     
     currentDisk.isDragging = false;
-    goToRod(currentDisk, event);
+    if(currentDisk != disks.invisible) goToRod(currentDisk, event);
 }
 
 function handleMouseOut(event) { 
@@ -85,7 +87,6 @@ function isDraggable(disk) {
     return false;
 }
 
-// temporary function
 function goToRod(disk, event) {
     var currentRod;
     var purposeRod;
@@ -170,8 +171,7 @@ function whatDisk(event) {
     
     for(var i in disks) {
         if((cursorX >= disks[i].x) && (cursorX <= disks[i].x + disks[i].width) &&
-           (cursorY >= disks[i].y) && (cursorY <= disks[i].y + 24)) {
-            
+           (cursorY >= disks[i].y) && (cursorY <= disks[i].y + 24)) {           
             return disks[i];
         }
     }
@@ -204,13 +204,12 @@ function drawGameBoard() {
 }
 
 function clean() {
-    // board
+    // canvas area
     ctx.fillStyle = "#2e313d";
     ctx.fillRect(0, 0, 726, 325);
     drawGameBoard();
 }
 
-var height = 248;
 function drawDisks(oLevel) { 
     oLevel = (typeof oLevel !== "object") ? {} : oLevel;
     
