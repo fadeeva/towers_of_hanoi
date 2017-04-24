@@ -69,6 +69,8 @@ function showLevelMenu() {
 }
 
 function selectLevel(level, text) {
+    turnLevelToStartPosition(currentLevel);
+    
     clean();
     drawDisks(level);
     showLevelMenu();

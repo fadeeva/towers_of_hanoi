@@ -51,7 +51,7 @@ function handleMouseUp(event) {
     event = event || window.event;
     
     currentDisk.isDragging = false;
-    if(currentDisk != disks.invisible) goToRod(currentDisk, event);
+    goToRod(currentDisk, event);
 }
 
 function handleMouseOut(event) { 
@@ -145,8 +145,13 @@ function turnLevelToStartPosition(level) {
         level.rod_1 = level.rod_3;
         level.rod_3 = [];
     } else {
-        level.rod_1.concat(level.rod_2, level.rod_3);
-        console.log(level)
+        level.rod_1 = level.rod_1.concat(level.rod_2, level.rod_3);
+        level.rod_1.sort(function(a, b) {
+            return b.width - a.width;
+        });
+        
+        level.rod_2 = [];
+        level.rod_3 = [];
     }
 }
 
