@@ -115,8 +115,5 @@ function showWinWindow() {
             document.getElementById("new_time_record").style.display = 'none';
             document.getElementById("not_time_record").style.display = 'block';
         }
-    }
-    
-    
+    }    
 }
-

@@ -73,7 +73,6 @@ var disks = {
                     y : 0 },
 }
 
-
 // game's levels
 var levels = [
 /*0*/{
@@ -111,4 +110,4 @@ var levels = [
         rod_2 : [],
         rod_3 : []
      }
-]
+];

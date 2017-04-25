@@ -9,7 +9,7 @@ var offsetY = document.getElementById('canvas').offsetTop;
 var currentLevel = levels[1];
 var currentDisk = disks.invisible;
 var timeStart = false; // flag for timer
-var height = 248; // start height for disk position 
+var height = 248; // start height for disk position, use in drawDisks()
 
 function init() {
     theCanvas = document.getElementById('canvas');
@@ -50,8 +50,10 @@ function handleMouseDown(event) {
 function handleMouseUp(event) {    
     event = event || window.event;
     
-    currentDisk.isDragging = false;
-    goToRod(currentDisk, event);
+    if(currentDisk != disks.invisible) {
+        currentDisk.isDragging = false;
+        goToRod(currentDisk, event);
+    }
 }
 
 function handleMouseOut(event) { 
@@ -59,7 +61,6 @@ function handleMouseOut(event) {
 
     currentDisk.isDragging = false;
 }
-
 
 function handleMouseMove(event) {
     event = event || window.event;
@@ -138,21 +139,13 @@ function goToRod(disk, event) {
 }
 
 function turnLevelToStartPosition(level) {   
-    if(level.rod_1.length == 0 && level.rod_2.length != 0) {
-        level.rod_1 = level.rod_2;
-        level.rod_2 = [];
-    } else if(level.rod_1.length == 0 && level.rod_3.length != 0) {
-        level.rod_1 = level.rod_3;
-        level.rod_3 = [];
-    } else {
-        level.rod_1 = level.rod_1.concat(level.rod_2, level.rod_3);
-        level.rod_1.sort(function(a, b) {
-            return b.width - a.width;
-        });
-        
-        level.rod_2 = [];
-        level.rod_3 = [];
-    }
+    level.rod_1 = level.rod_1.concat(level.rod_2, level.rod_3);
+    level.rod_1.sort(function(a, b) {
+        return b.width - a.width;
+    });
+
+    level.rod_2 = [];
+    level.rod_3 = [];
 }
 
 function isWin(level) {
@@ -180,7 +173,7 @@ function whatDisk(event) {
             return disks[i];
         }
     }
-    
+
     return disks.invisible
 }
 
@@ -248,5 +241,3 @@ function drawDisks(oLevel) {
         height = 248;
     }
 }
-
-
