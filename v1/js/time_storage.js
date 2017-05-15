@@ -21,9 +21,13 @@ function getListTimeRecord() {
 }
 
 function getTimeRecord(level) {
-    var str = localStorage.getItem(level);
-    var sec = parseInt(str.substring(0, 3)) * 60 + parseInt(str.substring(3))
-    return sec;
+    if(localStorage.getItem(level)) {
+        var str = localStorage.getItem(level);
+        var sec = parseInt(str.substring(0, 3)) * 60 + parseInt(str.substring(3))
+        return sec;
+    } else {
+        return null;
+    }
 }
 
 function getCurrentTime() {

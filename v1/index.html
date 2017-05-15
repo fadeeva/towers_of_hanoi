@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Towers Of Hanoi</title>
-    <link rel="stylesheet" href="../res/css/style.css">   
+    <link rel="stylesheet" href="../res/css/style.css">
+    
+    <!-- подключаем тесты -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.4.1/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.4.1/mocha.min.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
+    <script>
+        var assert = chai.assert;
+    </script>
+   
 </head>
 <body>
     <header>
@@ -72,6 +85,10 @@
     <footer>
         <img src="../res/img/kfadeeva_logo.png" alt="Katya Fadeeva logo">
     </footer>
+
+  <!-- результаты тестов -->
+  <div id="mocha"></div>
+
 </body>
     <script src="js/levels.js"></script>
     <script src="js/timer.js"></script>
@@ -79,4 +96,9 @@
     <script src="js/time_storage.js"></script>
     <script src="js/script.js"></script>
     
+    <!-- подключаем и запускаем тесты -->
+    <script src="js/test/test.js"></script>
+    <script>
+        mocha.run();
+    </script>
 </html>
