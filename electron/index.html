@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Towers Of Hanoi</title>
+    <link rel="stylesheet" href="../res/css/style.css">
+    
+    <!-- подключаем тесты -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.4.1/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.4.1/mocha.min.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
+    <script>
+        var assert = chai.assert;
+        var expect = chai.expect;
+    </script>
+   
+</head>
+<body>
+    <header>
+       <img src="../res/img/towers_of_hanoi_logo-4.png" alt="Temporary logo">
+       <div id="game_name">Towers of Hanoi</div>
+        <ul>
+            <li id="level">
+                <div id="level_number">#01</div>
+                <div id="close_btn">
+                    <svg version="1.1" id="close_btn" xmlns="http://www.w3.org/2000/svg"       xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+                        <line fill="#DF0030" stroke="#DF0030" stroke-width="2" stroke-miterlimit="10" x1="0" y1="0" x2="16" y2="16"/>
+                        <line fill="#DF0030" stroke="#DF0030" stroke-width="2" stroke-miterlimit="10" x1="16" y1="0" x2="0" y2="16"/>
+                    </svg>
+                </div>
+
+            </li>
+            <li id="timer">00:00</li>
+            <li id="start_stop" class="start">стоп</li>
+        </ul>
+    </header>
+    
+    <main>
+        <canvas id="canvas" width="726" height="325">Your browser does not support canvas.</canvas>
+        
+        <div id="module_window">
+            <h2>Уровни</h2>
+            <ul>
+                <li class="select_level">#01
+                    &nbsp;
+                    <span class=time_record></span>
+                </li>
+                <li class="select_level">#02
+                    &nbsp;
+                    <span class=time_record></span>
+                </li>
+                <li class="select_level">#03
+                    &nbsp;
+                    <span class=time_record></span>
+                </li>
+                <li class="select_level">#04
+                    &nbsp;
+                    <span class=time_record></span>
+                </li>
+                <li class="select_level">#05
+                    &nbsp;
+                    <span class=time_record></span>
+                </li>
+                <li class="select_level">#06
+                    &nbsp;
+                    <span class=time_record></span>
+                </li>
+            </ul>
+        </div>
+        <div id="win_window">
+            <h2>Победа!</h2>
+            <div id="your_time">Ваше время:</div>
+            <div id="big_time_record">00:00</div>
+            <div class="message_for_winner new_record" id="new_time_record">Поздравляю, это новый рекорд.</div>
+            <div class="message_for_winner" id="not_time_record">К сожалению, это не рекорд.</div>
+        </div>
+        <div id="screen_dark"></div>
+        
+    </main>
+    
+    <footer>
+        <img src="../res/img/kfadeeva_logo.png" alt="Katya Fadeeva logo">
+    </footer>
+
+  <!-- результаты тестов -->
+  <div id="mocha"></div>
+
+</body>
+    <script src="js/levels.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/control.js"></script>
+    <script src="js/time_storage.js"></script>
+    <script src="js/script.js"></script>
+    
+    <!-- подключаем и запускаем тесты -->
+    <script src="js/test/test.js"></script>
+    <script>
+        mocha.run();
+    </script>
+</html>
