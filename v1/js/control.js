@@ -1,9 +1,9 @@
 // menu's function
-var darkScreen = document.getElementById("screen_dark");
-var levelMenu = document.getElementById("module_window");
-var levelNumber = document.getElementById("level_number");
-var closeBtn = document.getElementById("close_btn");
-var selectLevelClass = document.querySelectorAll(".select_level");
+const darkScreen = document.getElementById("screen_dark");
+const levelMenu = document.getElementById("module_window");
+const levelNumber = document.getElementById("level_number");
+const closeBtn = document.getElementById("close_btn");
+const selectLevelClass = document.querySelectorAll(".select_level");
 var whatClose = false;
 
 darkScreen.style.display = 'none';
@@ -14,9 +14,9 @@ levelNumber.style.display = 'block';
 level.addEventListener("click", toggleMenu);
 start_stop.addEventListener("click", toggleMenu);
 
-for(var i = 0; i < selectLevelClass.length; i++) {
+for(let i = 0; i < selectLevelClass.length; i++) {
     selectLevelClass[i].addEventListener('click', function(event) {
-        var getLevelFromMenu = Math.abs(parseInt(this.innerHTML.substring(1, 3)));
+        let getLevelFromMenu = Math.abs(parseInt(this.innerHTML.substring(1, 3)));
         if(getLevelFromMenu < levels.length) {
             selectLevel(levels[getLevelFromMenu], this.innerHTML.substring(0, 3));
         }
@@ -47,7 +47,7 @@ function toggleMenu() {
 
 function showLevelMenu() { 
     close = "level";
-    var width = document.getElementsByTagName('body')[0].clientWidth;
+    let width = document.getElementsByTagName('body')[0].clientWidth;
     
     darkScreen.style.display == 'none' ? darkScreen.style.display = 'block'
                                             : darkScreen.style.display = 'none';
@@ -80,8 +80,8 @@ function selectLevel(level, text) {
 }
 
 function showWinWindow() {
-    var width = document.getElementsByTagName('body')[0].clientWidth;
-    var winWindow = document.getElementById("win_window");
+    let width = document.getElementsByTagName('body')[0].clientWidth;
+    let winWindow = document.getElementById("win_window");
     
     whatClose = "win_window";
     
@@ -103,8 +103,8 @@ function showWinWindow() {
     closeBtn.style.display == 'none' ? closeBtn.style.display = 'block'
                                             : closeBtn.style.display = 'none';
     
-    var currentTime = document.getElementById("big_time_record");
-    var arrTime = getCurrentTime()
+    let currentTime = document.getElementById("big_time_record");
+    let arrTime = getCurrentTime()
     currentTime.innerHTML = arrTime.strTime;
     
     if(arrTime.sec) {

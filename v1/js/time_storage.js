@@ -13,7 +13,7 @@ function getListTimeRecord() {
     if(!localStorage.getItem("#06"))
         localStorage.setItem("#06", "00:00");
     
-    var timeRecords = document.querySelectorAll(".time_record");
+    let timeRecords = document.querySelectorAll(".time_record");
     
     timeRecords.forEach(function(item, i, timeRecords) {
         item.innerHTML = localStorage.getItem("#0" + (i + 1))
@@ -22,8 +22,8 @@ function getListTimeRecord() {
 
 function getTimeRecord(level) {
     if(localStorage.getItem(level)) {
-        var str = localStorage.getItem(level);
-        var sec = parseInt(str.substring(0, 3)) * 60 + parseInt(str.substring(3))
+        let str = localStorage.getItem(level);
+        let sec = parseInt(str.substring(0, 3)) * 60 + parseInt(str.substring(3))
         return sec;
     } else {
         return null;
@@ -31,8 +31,8 @@ function getTimeRecord(level) {
 }
 
 function getCurrentTime() {
-    var str = document.getElementById("timer").innerHTML;
-    var arrCurrentTime = {}
+    let str = document.getElementById("timer").innerHTML;
+    let arrCurrentTime = {}
     
     arrCurrentTime = {
         strTime : str,
@@ -42,8 +42,8 @@ function getCurrentTime() {
 }
 
 function isNewRecord(level, arrCurrentTime) {
-    var oldTime = getTimeRecord(level);
-    var newTime = arrCurrentTime.sec;
+    let oldTime = getTimeRecord(level);
+    let newTime = arrCurrentTime.sec;
     if(oldTime == 0 || newTime < oldTime) {
         localStorage.setItem(level, arrCurrentTime.strTime);
         getListTimeRecord();

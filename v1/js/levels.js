@@ -1,5 +1,5 @@
 // game's disks
-var disks = {
+const disks = {
     /*0*/invisible : {  color: "rgba(0, 0, 0, .0)",
                         width: 0,
                         rodGap: 0,
@@ -74,7 +74,7 @@ var disks = {
 }
 
 // game's levels
-var levels = [
+const levels = [
 /*0*/{
         rod_1 : [],
         rod_2 : [],
