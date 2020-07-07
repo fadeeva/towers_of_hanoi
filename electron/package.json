@@ -13,6 +13,6 @@
   "author": "\"Katya Fadeeva <katfadmail@gmail.com> (https://kfadeeva.ru)",
   "license": "MIT",
   "dependencies": {
-    "electron": "^6.0.1"
+    "electron": "^7.2.4"
   }
 }
